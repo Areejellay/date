@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="container text-center mx-auto">
+        <h1 class="text-center" style="margin-top: 10.5rem; font-size: 4.25rem;">Wanna go date?</h1>
+        <img src="src/img/default.gif" class="mx-auto text-center h-40 mt-10 default" />
+        <div class="flex w-1/2 justify-between mx-auto mt-12">
+            <div class="yes-div">
+                <button
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-8 text-lg rounded text-center mx-auto yes">
+                    YES !!
+                </button>
+            </div>
+            <div class="no-div">
+                <button
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 text-lg rounded text-center mx-auto no">
+                    No
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    var yes = document.querySelector(".yes");
+    var no = document.querySelector(".no");
+    var defaultImg = document.getElementsByClassName("default")[0].src;
+    var buttons = document.querySelector(".no-div");
+    var noClickCount = 0; // Initialize counter
+    yes.addEventListener("click", function () {
+        document.getElementsByClassName("default")[0].src = "src/img/yes.gif";
+    });
+
+    function addNoClickListener() {
+        var no = document.querySelector(".no");
+        no.addEventListener("click", function () {
+            noClickCount++; // Increment counter
+            console.log(noClickCount);
+            document.getElementsByClassName("default")[0].src = "src/img/no.gif";
+            switch (noClickCount) {
+                case 1:
+                    no.remove();
+                    buttons.innerHTML = '<button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 text-lg rounded text-center mx-auto no">No</button>';
+                    addNoClickListener(); // Reassign event listener
+                    break;
+                case 2:
+                    no.remove();
+                    buttons.innerHTML = '<button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 text-lg rounded text-center mx-auto no">No</button>';
+                    addNoClickListener(); // Reassign event listener
+                    break;
+                case 3:
+                    no.remove();
+                    buttons.innerHTML = '<button class="bg-red-500 hover:bg-red-700 text-white font-bold px-2 text-lg rounded text-center mx-auto no">No</button>';
+                    addNoClickListener(); // Reassign event listener
+                    break;
+                case 4:
+                    no.remove();
+                    break;
+            }
+        });
+    }
+
+    addNoClickListener()
+
+</script>
